@@ -1,0 +1,36 @@
+<mat-toolbar color="primary" class="app-toolbar">
+    <mat-toolbar-row>
+        <button
+            mat-icon-button
+            (click)="drawer.toggle()"
+            *ngIf="isHandset$ | async"
+        >
+            <mat-icon>menu</mat-icon>
+        </button>
+    </mat-toolbar-row>
+    <div class="toolbar-container">
+        <h1 class="app-toolbar-title" routerLink="/">Angular Material Demo</h1>
+    </div>
+    <mat-toolbar-row class="app-toolbar-nav" *ngIf="!(isHandset$ | async)">
+        <a mat-button routerLink="/cicak">Cuki cicák</a>
+        <a mat-button routerLink="/kapcsolat">Kapcsolataim itt!</a>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container class="app-sidenav-container">
+    <mat-sidenav
+        #drawer
+        mode="over"
+        [opened]="isHandset$ | async"
+        class="app-sidenav"
+    >
+        <mat-nav-list class="app-nav-list">
+            <a mat-list-item routerLink="/page1">Oldal 1</a>
+            <a mat-list-item routerLink="/page2">Oldal 2</a>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="app-sidenav-content">
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
